@@ -19,7 +19,7 @@ class Critic < Model
   def average_review_score
     query = <<-SQL
       SELECT AVG(r.score) score
-      FROM critics c JOIN restaurant_reviews r 
+      FROM critics c JOIN restaurant_reviews r
       ON c.id = r.critic_id
       WHERE c.id = ?
     SQL
@@ -29,7 +29,7 @@ class Critic < Model
   def unreviewed_restaurants
     query = <<-SQL
       SELECT *
-      FROM restaurants 
+      FROM restaurants
       WHERE id NOT IN
       (SELECT DISTINCT r.restaurant_id
       FROM chefs c
